@@ -1,0 +1,4 @@
+FROM openjdk:21-jdk-slim
+VOLUME /tmp
+COPY todolist-authentication.jar todolist-authentication.jar
+ENTRYPOINT ["java","-jar","/todolist-authentication.jar"]

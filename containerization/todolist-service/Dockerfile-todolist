@@ -1,0 +1,4 @@
+FROM openjdk:21-jdk-slim
+VOLUME /tmp
+COPY todolist-service.jar todolist-service.jar
+ENTRYPOINT ["java","-jar","/todolist-service.jar"]

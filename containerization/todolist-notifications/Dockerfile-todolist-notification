@@ -1,0 +1,4 @@
+FROM openjdk:21-jdk-slim
+VOLUME /tmp
+COPY todolist-notifications.jar todolist-notifications.jar
+ENTRYPOINT ["java","-jar","/todolist-notifications.jar"]

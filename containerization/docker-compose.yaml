@@ -1,0 +1,48 @@
+services:
+  todolist-service:
+    build:
+      context: todolist-service
+      dockerfile: Dockerfile-todolist
+    ports:
+      - "8081:8081"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  todolist-notifications:
+    build:
+      context: todolist-notifications
+      dockerfile: Dockerfile-todolist-notification
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  todolist-authentication:
+    build:
+      context: todolist-authentication
+      dockerfile: Dockerfile-todolist-authentication
+    ports:
+      - "8082:8082"
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 20s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

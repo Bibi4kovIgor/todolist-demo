@@ -1,6 +1,24 @@
 package com.todolistservice.model;
 
-import java.io.Serializable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record Task(int id, String text) implements Serializable {   }
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+@Entity
+public final class Task {
+
+	@Id
+	private int id;
+
+	@Column
+	private String text;
+}
 

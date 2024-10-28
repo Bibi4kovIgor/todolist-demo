@@ -1,7 +1,6 @@
 package com.todolistservice.rest;
 
 import com.todolistservice.dto.TaskDto;
-import com.todolistservice.model.Task;
 import com.todolistservice.service.ToDoTaskService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/tasks")

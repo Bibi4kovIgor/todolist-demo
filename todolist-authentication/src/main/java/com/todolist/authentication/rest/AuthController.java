@@ -44,7 +44,10 @@ public class AuthController {
 		String token = Jwts.builder().subject(user.username())
 				.signWith(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()))
 				.compact();
-		return ResponseEntity.ok(token);
+		return ResponseEntity.status(HttpStatus.OK)
+				.header("Authorization", "Bearer " + token)
+				.body("");
+
 	}
 
 	@GetMapping("/validate")

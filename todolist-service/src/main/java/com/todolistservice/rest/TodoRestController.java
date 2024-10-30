@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/tasks")
@@ -28,11 +29,11 @@ public class TodoRestController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(task);
 	}
 
-	@GetMapping({"/", "/{page}/{size}"})
-	public ResponseEntity<List<TaskDto>> getAllTasks(@PathVariable(required = false) int page,
-			                                      @PathVariable(required = false) int size) {
-		page = page == 0 ? 1 : page;
-		size = size == 0 ? 1 : size;
+	@GetMapping({"", "/", "/{page}/{size}"})
+	public ResponseEntity<List<TaskDto>> getAllTasks(@PathVariable(required = false) Integer page,
+			                                         @PathVariable(required = false) Integer size) {
+		page = Objects.isNull(page) ? 1 : page;
+		size = Objects.isNull(size) ? 1 : size;
 		return ResponseEntity.ok(toDoTaskService.getTasksByPage(page, size));
 	}
 }

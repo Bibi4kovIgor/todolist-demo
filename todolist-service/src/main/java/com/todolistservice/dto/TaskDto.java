@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
 @Builder
 public record TaskDto(int id, String text, LocalDateTime deadline) {
 	private TaskDto(){

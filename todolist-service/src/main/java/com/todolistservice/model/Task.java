@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -20,5 +22,8 @@ public final class Task {
 
 	@Column
 	private String text;
+
+	@Column
+	private LocalDateTime deadline;
 }
 
